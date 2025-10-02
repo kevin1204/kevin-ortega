@@ -1,28 +1,43 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
+
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  duration: number;
+  delay: number;
+}
 
 interface ConstellationBackgroundProps {
   className?: string;
 }
 
 export function ConstellationBackground({ className = '' }: ConstellationBackgroundProps) {
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number }>>([]);
+  const [particles, setParticles] = useState<Particle[]>([]);
 
-  useEffect(() => {
-    // Generate particles
-    const newParticles = [];
+  // Generate particles with fixed animation values to prevent re-renders
+  const generatedParticles = useMemo(() => {
+    const newParticles: Particle[] = [];
     for (let i = 0; i < 30; i++) {
       newParticles.push({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
         size: Math.random() * 3 + 1,
+        duration: 3 + Math.random() * 2,
+        delay: Math.random() * 2,
       });
     }
-    setParticles(newParticles);
+    return newParticles;
   }, []);
+
+  useEffect(() => {
+    setParticles(generatedParticles);
+  }, [generatedParticles]);
 
   return (
     <div className={`absolute inset-0 overflow-hidden ${className}`}>
@@ -42,9 +57,9 @@ export function ConstellationBackground({ className = '' }: ConstellationBackgro
             scale: [1, 1.2, 1],
           }}
           transition={{
-            duration: 3 + Math.random() * 2,
+            duration: particle.duration,
             repeat: Infinity,
-            delay: Math.random() * 2,
+            delay: particle.delay,
             ease: "easeInOut",
           }}
         />
@@ -83,7 +98,7 @@ export function ConstellationBackground({ className = '' }: ConstellationBackgro
                 opacity: [opacity * 0.5, opacity, opacity * 0.5],
               }}
               transition={{
-                duration: 2 + Math.random(),
+                duration: 2,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
