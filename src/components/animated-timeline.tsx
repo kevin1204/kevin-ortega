@@ -280,6 +280,7 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
                     </CardContent>
                   </Card>
                 </div>
+              </div>
             </motion.div>
           </motion.div>
         ))}
