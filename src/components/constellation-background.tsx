@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Star {
   id: number;
@@ -13,9 +13,10 @@ interface Star {
 
 export function ConstellationBackground() {
   const [stars, setStars] = useState<Star[]>([]);
+  const [mounted, setMounted] = useState(false);
 
-  // Generate stars for night sky effect
-  const generatedStars = useMemo(() => {
+  useEffect(() => {
+    // Generate stars only on client side to avoid hydration mismatch
     const newStars: Star[] = [];
     for (let i = 0; i < 40; i++) {
       newStars.push({
@@ -26,12 +27,15 @@ export function ConstellationBackground() {
         brightness: Math.random() * 0.7 + 0.3,
       });
     }
-    return newStars;
+    setStars(newStars);
+    setMounted(true);
   }, []);
 
-  useEffect(() => {
-    setStars(generatedStars);
-  }, [generatedStars]);
+  if (!mounted) {
+    return (
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900" />
+    );
+  }
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
@@ -52,9 +56,9 @@ export function ConstellationBackground() {
             scale: [1, 1.2, 1],
           }}
           transition={{
-            duration: 2 + Math.random() * 3,
+            duration: 2 + (star.id % 3),
             repeat: Infinity,
-            delay: Math.random() * 2,
+            delay: star.id * 0.1,
             ease: "easeInOut",
           }}
         />
@@ -94,10 +98,10 @@ export function ConstellationBackground() {
                 scaleX: [0.8, 1.1, 0.8],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: 3 + (star.id % 2),
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: Math.random() * 2,
+                delay: star.id * 0.05,
               }}
             />
           );
