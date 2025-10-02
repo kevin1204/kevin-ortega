@@ -1,250 +1,102 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useState, useMemo } from 'react';
+
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+}
 
 export function ConstellationBackground() {
+  const [particles, setParticles] = useState<Particle[]>([]);
+
+  // Generate particles with fixed positions
+  const generatedParticles = useMemo(() => {
+    const newParticles: Particle[] = [];
+    for (let i = 0; i < 25; i++) {
+      newParticles.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 2 + 1,
+      });
+    }
+    return newParticles;
+  }, []);
+
+  useEffect(() => {
+    setParticles(generatedParticles);
+  }, [generatedParticles]);
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {/* Constellation dots with glow effects */}
-      <motion.div
-        className="absolute w-3 h-3 bg-blue-400 rounded-full shadow-lg"
-        style={{ 
-          left: '15%', 
-          top: '25%',
-          boxShadow: '0 0 20px #60a5fa'
-        }}
-        animate={{ 
-          opacity: [0.3, 1, 0.3],
-          scale: [1, 1.4, 1]
-        }}
-        transition={{ 
-          duration: 2.5, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-      />
-      
-      <motion.div
-        className="absolute w-4 h-4 bg-purple-400 rounded-full shadow-lg"
-        style={{ 
-          left: '45%', 
-          top: '15%',
-          boxShadow: '0 0 25px #a855f7'
-        }}
-        animate={{ 
-          opacity: [0.4, 1, 0.4],
-          scale: [1, 1.3, 1]
-        }}
-        transition={{ 
-          duration: 3, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 0.8
-        }}
-      />
-      
-      <motion.div
-        className="absolute w-2 h-2 bg-blue-400 rounded-full shadow-lg"
-        style={{ 
-          left: '75%', 
-          top: '35%',
-          boxShadow: '0 0 15px #60a5fa'
-        }}
-        animate={{ 
-          opacity: [0.2, 0.9, 0.2],
-          scale: [1, 1.6, 1]
-        }}
-        transition={{ 
-          duration: 2.2, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 1.5
-        }}
-      />
-      
-      <motion.div
-        className="absolute w-5 h-5 bg-purple-400 rounded-full shadow-lg"
-        style={{ 
-          left: '25%', 
-          top: '65%',
-          boxShadow: '0 0 30px #a855f7'
-        }}
-        animate={{ 
-          opacity: [0.3, 1, 0.3],
-          scale: [1, 1.2, 1]
-        }}
-        transition={{ 
-          duration: 2.8, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 2
-        }}
-      />
-      
-      <motion.div
-        className="absolute w-3 h-3 bg-blue-400 rounded-full shadow-lg"
-        style={{ 
-          left: '65%', 
-          top: '75%',
-          boxShadow: '0 0 20px #60a5fa'
-        }}
-        animate={{ 
-          opacity: [0.4, 0.8, 0.4],
-          scale: [1, 1.5, 1]
-        }}
-        transition={{ 
-          duration: 2.3, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 2.5
-        }}
-      />
-      
-      <motion.div
-        className="absolute w-2 h-2 bg-purple-400 rounded-full shadow-lg"
-        style={{ 
-          left: '85%', 
-          top: '60%',
-          boxShadow: '0 0 15px #a855f7'
-        }}
-        animate={{ 
-          opacity: [0.3, 1, 0.3],
-          scale: [1, 1.4, 1]
-        }}
-        transition={{ 
-          duration: 2.7, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 3
-        }}
-      />
+      {/* Simple dots */}
+      {particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="absolute rounded-full bg-blue-500"
+          style={{
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+            width: particle.size,
+            height: particle.size,
+          }}
+          animate={{
+            opacity: [0.3, 0.8, 0.3],
+          }}
+          transition={{
+            duration: 2 + Math.random() * 2,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
 
-      {/* Animated connecting lines */}
-      <motion.div
-        className="absolute bg-gradient-to-r from-blue-400 to-purple-400"
-        style={{ 
-          left: '15%', 
-          top: '25%', 
-          width: '30%', 
-          height: '2px',
-          transformOrigin: 'left center',
-          borderRadius: '1px'
-        }}
-        animate={{ 
-          scaleX: [0, 1, 0],
-          opacity: [0, 0.7, 0]
-        }}
-        transition={{ 
-          duration: 3.5, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-      />
-      
-      <motion.div
-        className="absolute bg-gradient-to-r from-purple-400 to-blue-400"
-        style={{ 
-          left: '45%', 
-          top: '15%', 
-          width: '30%', 
-          height: '2px',
-          transformOrigin: 'left center',
-          borderRadius: '1px'
-        }}
-        animate={{ 
-          scaleX: [0, 1, 0],
-          opacity: [0, 0.6, 0]
-        }}
-        transition={{ 
-          duration: 2.8, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 1.2
-        }}
-      />
-      
-      <motion.div
-        className="absolute bg-gradient-to-r from-blue-400 to-purple-400"
-        style={{ 
-          left: '25%', 
-          top: '65%', 
-          width: '40%', 
-          height: '2px',
-          transformOrigin: 'left center',
-          borderRadius: '1px'
-        }}
-        animate={{ 
-          scaleX: [0, 1, 0],
-          opacity: [0, 0.8, 0]
-        }}
-        transition={{ 
-          duration: 3.2, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 2.3
-        }}
-      />
-      
-      <motion.div
-        className="absolute bg-gradient-to-r from-purple-400 to-blue-400"
-        style={{ 
-          left: '65%', 
-          top: '75%', 
-          width: '20%', 
-          height: '2px',
-          transformOrigin: 'left center',
-          borderRadius: '1px'
-        }}
-        animate={{ 
-          scaleX: [0, 1, 0],
-          opacity: [0, 0.5, 0]
-        }}
-        transition={{ 
-          duration: 2.5, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 3.1
-        }}
-      />
+      {/* Animated connection lines */}
+      {particles.map((particle, index) => {
+        const nearbyParticles = particles.filter((p, i) => {
+          if (i <= index) return false;
+          const distance = Math.sqrt(
+            Math.pow(particle.x - p.x, 2) + Math.pow(particle.y - p.y, 2)
+          );
+          return distance < 20;
+        });
 
-      {/* Central pulsing glow */}
-      <motion.div
-        className="absolute w-80 h-80 bg-blue-400 rounded-full opacity-10 blur-3xl"
-        style={{ 
-          left: '50%', 
-          top: '50%', 
-          transform: 'translate(-50%, -50%)' 
-        }}
-        animate={{ 
-          scale: [1, 1.4, 1],
-          opacity: [0.05, 0.2, 0.05]
-        }}
-        transition={{ 
-          duration: 4, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-      />
-      
-      {/* Secondary glow */}
-      <motion.div
-        className="absolute w-60 h-60 bg-purple-400 rounded-full opacity-15 blur-2xl"
-        style={{ 
-          left: '50%', 
-          top: '50%', 
-          transform: 'translate(-50%, -50%)' 
-        }}
-        animate={{ 
-          scale: [1.2, 0.8, 1.2],
-          opacity: [0.1, 0.25, 0.1]
-        }}
-        transition={{ 
-          duration: 3.5, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 1
-        }}
-      />
+        return nearbyParticles.map((nearby) => {
+          const distance = Math.sqrt(
+            Math.pow(particle.x - nearby.x, 2) + Math.pow(particle.y - nearby.y, 2)
+          );
+          const opacity = Math.max(0, 0.6 - distance / 20);
+
+          return (
+            <motion.div
+              key={`${particle.id}-${nearby.id}`}
+              className="absolute bg-blue-500"
+              style={{
+                left: `${Math.min(particle.x, nearby.x)}%`,
+                top: `${Math.min(particle.y, nearby.y)}%`,
+                width: `${Math.abs(particle.x - nearby.x)}%`,
+                height: `${Math.abs(particle.y - nearby.y)}%`,
+                opacity,
+                transformOrigin: 'top left',
+                transform: `rotate(${Math.atan2(nearby.y - particle.y, nearby.x - particle.x) * 180 / Math.PI}deg)`,
+              }}
+              animate={{
+                opacity: [opacity * 0.3, opacity, opacity * 0.3],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          );
+        });
+      })}
     </div>
   );
 }
