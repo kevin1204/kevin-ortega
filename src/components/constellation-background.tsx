@@ -18,6 +18,7 @@ interface ConstellationBackgroundProps {
 
 export function ConstellationBackground({ className = '' }: ConstellationBackgroundProps) {
   const [particles, setParticles] = useState<Particle[]>([]);
+  const [mounted, setMounted] = useState(false);
 
   // Generate particles with fixed animation values to prevent re-renders
   const generatedParticles = useMemo(() => {
@@ -36,11 +37,19 @@ export function ConstellationBackground({ className = '' }: ConstellationBackgro
   }, []);
 
   useEffect(() => {
+    setMounted(true);
     setParticles(generatedParticles);
   }, [generatedParticles]);
 
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+      {/* Debug: Add a visible test element */}
+      <div className="absolute top-4 left-4 w-4 h-4 bg-red-500 rounded-full z-50" />
+      
       {/* Animated particles */}
       {particles.map((particle) => (
         <motion.div
@@ -51,8 +60,8 @@ export function ConstellationBackground({ className = '' }: ConstellationBackgro
             top: `${particle.y}%`,
             width: particle.size,
             height: particle.size,
-            background: 'hsl(var(--primary))',
-            boxShadow: '0 0 10px hsl(var(--primary))',
+            background: '#6366f1', // Use direct color instead of CSS variable
+            boxShadow: '0 0 10px #6366f1',
           }}
           animate={{
             opacity: [0.2, 0.8, 0.2],
@@ -93,10 +102,10 @@ export function ConstellationBackground({ className = '' }: ConstellationBackgro
                 width: `${Math.abs(particle.x - nearby.x)}%`,
                 height: `${Math.abs(particle.y - nearby.y)}%`,
                 opacity,
-                background: 'linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%)',
+                background: 'linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%)',
                 transformOrigin: 'top left',
                 transform: `rotate(${Math.atan2(nearby.y - particle.y, nearby.x - particle.x) * 180 / Math.PI}deg)`,
-                boxShadow: '0 0 5px hsl(var(--primary))',
+                boxShadow: '0 0 5px #6366f1',
               }}
               animate={{
                 opacity: [opacity * 0.3, opacity, opacity * 0.3],
@@ -117,7 +126,7 @@ export function ConstellationBackground({ className = '' }: ConstellationBackgro
         style={{
           width: 300,
           height: 300,
-          background: 'radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, #6366f1 0%, transparent 70%)',
           borderRadius: '50%',
           filter: 'blur(30px)',
           left: '50%',
