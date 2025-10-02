@@ -23,21 +23,21 @@ export function Hero({ siteConfig }: HeroProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Enhanced Constellation Background */}
-      <ConstellationBackground />
+      <ConstellationBackground className="z-0" />
       
       {/* Dynamic gradient overlay */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 z-10"
         variants={gradientShiftVariants}
         animate="animate"
         style={{
           background: 'linear-gradient(45deg, hsl(var(--primary)) 0%, transparent 50%, hsl(var(--accent)) 100%)',
-          opacity: 0.1,
+          opacity: 0.05,
           backgroundSize: '200% 200%',
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+      <div className="relative z-20 mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
