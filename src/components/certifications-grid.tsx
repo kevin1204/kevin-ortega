@@ -1,22 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink } from 'lucide-react';
 import type { Certification } from '@/lib/types';
-import { fadeInUp, staggerContainer, staggerItem, hoverLift } from '@/lib/animations';
-import { LoadingGrid } from '@/components/loading';
+import { staggerContainer, staggerItem } from '@/lib/animations';
 
 interface CertificationsGridProps {
   certifications: Certification[];
 }
 
 export function CertificationsGrid({ certifications }: CertificationsGridProps) {
-  const [isLoading, setIsLoading] = useState(false);
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -32,16 +28,13 @@ export function CertificationsGrid({ certifications }: CertificationsGridProps) 
       </div>
 
       {/* Certifications Grid */}
-      {isLoading ? (
-        <LoadingGrid count={6} />
-      ) : (
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
           {certifications.map((certification) => (
           <motion.div key={certification.id} variants={staggerItem}>
             <Card className="group h-full transition-all duration-300 hover:shadow-lg">
@@ -89,8 +82,7 @@ export function CertificationsGrid({ certifications }: CertificationsGridProps) 
             </Card>
           </motion.div>
         ))}
-        </motion.div>
-      )}
+      </motion.div>
 
     </div>
   );
