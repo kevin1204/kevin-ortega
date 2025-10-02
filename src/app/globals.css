@@ -150,7 +150,7 @@
     -webkit-overflow-scrolling: touch;
   }
   
-  /* Shadow fixes for timeline cards */
+  /* Shadow fixes for timeline cards - proper rounded shadows */
   .timeline-card-container {
     overflow: visible;
     padding: 1rem;
@@ -160,9 +160,29 @@
     overflow: visible;
   }
   
-  /* Ensure shadows render properly */
+  /* Ensure shadows render properly with rounded corners */
   [data-slot="card"] {
     overflow: visible;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Light mode specific shadow fixes */
+  .light [data-slot="card"] {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Dark mode shadows remain unchanged */
+  .dark [data-slot="card"] {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Hover shadow for timeline cards */
+  .timeline-card-container:hover [data-slot="card"] {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .dark .timeline-card-container:hover [data-slot="card"] {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
   }
   
   /* Accessibility - Reduced Motion */
@@ -228,24 +248,10 @@
     }
   }
   
-  /* Constellation Effects */
-  .constellation-particle {
-    position: absolute;
-    border-radius: 50%;
-    background: hsl(var(--primary));
-    opacity: 0.6;
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px) scale(1);
-      opacity: 0.6;
-    }
-    50% {
-      transform: translateY(-20px) scale(1.1);
-      opacity: 0.8;
-    }
+  /* Performance Optimizations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
   }
   
   /* Magnetic Hover Effects */
