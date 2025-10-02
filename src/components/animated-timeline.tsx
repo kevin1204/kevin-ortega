@@ -147,20 +147,15 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
             {/* Content */}
             <motion.div
               variants={scrollRevealItem}
-              className="ml-16 flex-1 timeline-card-container"
+              className="ml-16 flex-1 relative z-10"
             >
-              <MagneticCard intensity={0.1} className="h-full">
-                <motion.div
-                  variants={depthVariants}
-                  initial="shallow"
-                  whileHover="deep"
+              <div className="relative overflow-visible">
+                <Card 
+                  className={`group cursor-pointer transition-all duration-300 bg-card rounded-2xl shadow-lg border ${
+                    expandedItem === entry.id ? 'shadow-xl border-primary/50' : ''
+                  }`}
+                  onClick={() => setExpandedItem(expandedItem === entry.id ? null : entry.id)}
                 >
-                  <Card 
-                    className={`group cursor-pointer transition-all duration-300 ${
-                      expandedItem === entry.id ? 'shadow-lg border-primary/50' : ''
-                    }`}
-                    onClick={() => setExpandedItem(expandedItem === entry.id ? null : entry.id)}
-                  >
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
@@ -284,13 +279,12 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
                       </motion.div>
                     </CardContent>
                   </Card>
-                </motion.div>
-              </MagneticCard>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         ))}
       </motion.div>
-      </div>
     </div>
   );
 }
