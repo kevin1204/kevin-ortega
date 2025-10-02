@@ -18,13 +18,13 @@ export function ConstellationBackground() {
   useEffect(() => {
     // Generate stars only on client side to avoid hydration mismatch
     const newStars: Star[] = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 60; i++) {
       newStars.push({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 2 + 0.5,
-        brightness: Math.random() * 0.8 + 0.2,
+        size: Math.random() * 3 + 1,
+        brightness: Math.random() * 0.9 + 0.1,
       });
     }
     setStars(newStars);
@@ -32,28 +32,27 @@ export function ConstellationBackground() {
   }, []);
 
   if (!mounted) {
-    return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900" />
-    );
+    return null;
   }
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      {/* Night sky stars */}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      {/* Bright white stars */}
       {stars.map((star) => (
         <motion.div
           key={star.id}
-          className="absolute rounded-full bg-white"
+          className="absolute rounded-full bg-white shadow-lg"
           style={{
             left: `${star.x}%`,
             top: `${star.y}%`,
             width: star.size,
             height: star.size,
             opacity: star.brightness,
+            boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)',
           }}
           animate={{
-            opacity: [star.brightness * 0.3, star.brightness, star.brightness * 0.3],
-            scale: [1, 1.3, 1],
+            opacity: [star.brightness * 0.4, star.brightness, star.brightness * 0.4],
+            scale: [1, 1.4, 1],
           }}
           transition={{
             duration: 2 + (star.id % 3),
@@ -64,26 +63,26 @@ export function ConstellationBackground() {
         />
       ))}
 
-      {/* Constellation lines connecting nearby stars */}
+      {/* Bright white constellation lines */}
       {stars.map((star, index) => {
         const nearbyStars = stars.filter((s, i) => {
           if (i <= index) return false;
           const distance = Math.sqrt(
             Math.pow(star.x - s.x, 2) + Math.pow(star.y - s.y, 2)
           );
-          return distance < 30;
+          return distance < 25;
         });
 
         return nearbyStars.map((nearby) => {
           const distance = Math.sqrt(
             Math.pow(star.x - nearby.x, 2) + Math.pow(star.y - nearby.y, 2)
           );
-          const opacity = Math.max(0, 0.6 - distance / 30);
+          const opacity = Math.max(0, 0.8 - distance / 25);
 
           return (
             <motion.div
               key={`${star.id}-${nearby.id}`}
-              className="absolute bg-blue-300"
+              className="absolute bg-white"
               style={{
                 left: `${Math.min(star.x, nearby.x)}%`,
                 top: `${Math.min(star.y, nearby.y)}%`,
@@ -92,10 +91,11 @@ export function ConstellationBackground() {
                 opacity,
                 transformOrigin: 'top left',
                 transform: `rotate(${Math.atan2(nearby.y - star.y, nearby.x - star.x) * 180 / Math.PI}deg)`,
+                boxShadow: '0 0 5px rgba(255, 255, 255, 0.6)',
               }}
               animate={{
-                opacity: [opacity * 0.2, opacity, opacity * 0.2],
-                scaleX: [0.8, 1.1, 0.8],
+                opacity: [opacity * 0.3, opacity, opacity * 0.3],
+                scaleX: [0.8, 1.2, 0.8],
               }}
               transition={{
                 duration: 3 + (star.id % 2),
@@ -108,78 +108,63 @@ export function ConstellationBackground() {
         });
       })}
 
-      {/* Gentle flowing background animation */}
+      {/* Bright shooting stars */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-blue-900/5 via-transparent to-purple-900/5"
-        animate={{
-          background: [
-            'linear-gradient(45deg, rgba(30, 58, 138, 0.05) 0%, transparent 50%, rgba(88, 28, 135, 0.05) 100%)',
-            'linear-gradient(135deg, rgba(88, 28, 135, 0.05) 0%, transparent 50%, rgba(30, 58, 138, 0.05) 100%)',
-            'linear-gradient(45deg, rgba(30, 58, 138, 0.05) 0%, transparent 50%, rgba(88, 28, 135, 0.05) 100%)',
-          ],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* Occasional shooting stars */}
-      <motion.div
-        className="absolute w-1 h-20 bg-gradient-to-b from-white to-transparent opacity-0"
+        className="absolute w-2 h-24 bg-gradient-to-b from-white to-transparent opacity-0"
         style={{
-          left: '15%',
-          top: '25%',
+          left: '20%',
+          top: '30%',
           transform: 'rotate(45deg)',
+          boxShadow: '0 0 20px rgba(255, 255, 255, 0.8)',
         }}
         animate={{
           opacity: [0, 1, 0],
+          x: [0, 400],
+          y: [0, 400],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          repeatDelay: 12,
+          ease: "easeOut",
+        }}
+      />
+
+      <motion.div
+        className="absolute w-1 h-20 bg-gradient-to-b from-white to-transparent opacity-0"
+        style={{
+          left: '70%',
+          top: '20%',
+          transform: 'rotate(30deg)',
+          boxShadow: '0 0 15px rgba(255, 255, 255, 0.6)',
+        }}
+        animate={{
+          opacity: [0, 0.9, 0],
           x: [0, 300],
           y: [0, 300],
         }}
         transition={{
           duration: 2.5,
           repeat: Infinity,
-          repeatDelay: 15,
+          repeatDelay: 18,
           ease: "easeOut",
         }}
       />
 
+      {/* Central bright glow */}
       <motion.div
-        className="absolute w-1 h-16 bg-gradient-to-b from-white to-transparent opacity-0"
-        style={{
-          left: '75%',
-          top: '35%',
-          transform: 'rotate(30deg)',
-        }}
-        animate={{
-          opacity: [0, 0.8, 0],
-          x: [0, 200],
-          y: [0, 200],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          repeatDelay: 20,
-          ease: "easeOut",
-        }}
-      />
-
-      {/* Central subtle glow */}
-      <motion.div
-        className="absolute w-96 h-96 bg-blue-400 rounded-full opacity-5 blur-3xl"
+        className="absolute w-80 h-80 bg-white rounded-full opacity-10 blur-3xl"
         style={{
           left: '50%',
           top: '50%',
           transform: 'translate(-50%, -50%)',
         }}
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.03, 0.08, 0.03],
+          scale: [1, 1.3, 1],
+          opacity: [0.05, 0.15, 0.05],
         }}
         transition={{
-          duration: 6,
+          duration: 5,
           repeat: Infinity,
           ease: "easeInOut",
         }}
