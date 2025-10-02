@@ -88,7 +88,7 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
         </Button>
       </div>
 
-      <div ref={ref} className="relative">
+      <div ref={ref} className="relative overflow-visible">
         {/* Enhanced Timeline line with gradient */}
         <motion.div
           variants={timelineLineVariants}
@@ -147,7 +147,7 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
             {/* Content */}
             <motion.div
               variants={scrollRevealItem}
-              className="ml-16 flex-1"
+              className="ml-16 flex-1 timeline-card-container"
             >
               <MagneticCard intensity={0.1} className="h-full">
                 <motion.div

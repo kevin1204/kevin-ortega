@@ -68,15 +68,14 @@ export function MagneticCard({
       }}
     >
       <motion.div
+        className={`transition-shadow duration-300 ${
+          isHovered 
+            ? 'shadow-xl' 
+            : 'shadow-sm'
+        }`}
         style={{
           transform: 'translateZ(50px)',
         }}
-        animate={{
-          boxShadow: isHovered 
-            ? '0 20px 40px rgba(0,0,0,0.15)' 
-            : '0 4px 20px rgba(0,0,0,0.1)',
-        }}
-        transition={{ duration: 0.3 }}
       >
         {children}
       </motion.div>

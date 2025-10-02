@@ -150,6 +150,21 @@
     -webkit-overflow-scrolling: touch;
   }
   
+  /* Shadow fixes for timeline cards */
+  .timeline-card-container {
+    overflow: visible;
+    padding: 1rem;
+  }
+  
+  .timeline-card-container > * {
+    overflow: visible;
+  }
+  
+  /* Ensure shadows render properly */
+  [data-slot="card"] {
+    overflow: visible;
+  }
+  
   /* Accessibility - Reduced Motion */
   @media (prefers-reduced-motion: reduce) {
     *,
