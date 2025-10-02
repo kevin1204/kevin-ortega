@@ -1,0 +1,15 @@
+{
+  "name": "Kevin Ortega Rodriguez",
+  "title": "Full Stack Developer & Solutions Architect • Founder & CEO @ WebLoft Studio",
+  "description": "I architect and build comprehensive digital solutions that drive business growth. As a Full Stack Developer and Technical Account Manager, I specialize in creating end-to-end solutions from concept to deployment.",
+  "url": "https://kevin-resume.vercel.app",
+  "ogImage": "/og-image.jpg",
+  "links": {
+    "email": "kevin.ortega2011@gmail.com",
+    "phone": "+1 226-376-6326",
+    "location": "London, Ontario, Canada",
+    "linkedin": "https://www.linkedin.com/in/ksor/",
+    "github": "https://github.com/kevin1204",
+    "website": "https://webloftstudio.com"
+  }
+}

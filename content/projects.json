@@ -1,0 +1,120 @@
+[
+  {
+    "id": "amigo-contracting-services",
+    "slug": "amigo-contracting-services",
+    "title": "Amigo Contracting Services",
+    "role": "Web Developer",
+    "summary": "Local services website focused on clear service pages and conversion forms.",
+    "description": "A comprehensive website for a local contracting services company, featuring clear service descriptions, customer testimonials, and optimized contact forms to drive lead generation.",
+    "cover": "/PROJECTS/AMIGO CONTRACTING SERVICES.png",
+    "gallery": [
+      "/PROJECTS/AMIGO CONTRACTING SERVICES.png",
+      "https://picsum.photos/seed/amigo-2/800/600",
+      "https://picsum.photos/seed/amigo-3/800/600"
+    ],
+    "links": {
+      "live": "https://amigocontracting.com/"
+    },
+    "tags": ["Webflow", "SEO", "Lead Gen"],
+    "metrics": [
+      { "label": "Page Load Speed", "value": "2.1s" },
+      { "label": "Conversion Rate", "value": "12%" },
+      { "label": "Mobile Score", "value": "98/100" }
+    ],
+    "featured": true
+  },
+  {
+    "id": "aeries",
+    "slug": "aeries",
+    "title": "Aeries",
+    "role": "Webflow Developer",
+    "summary": "Clean, modern marketing site built in Webflow.",
+    "description": "A sleek marketing website showcasing modern design principles with smooth animations and responsive layouts, built entirely in Webflow for optimal performance.",
+    "cover": "/PROJECTS/AERIES.png",
+    "gallery": [
+      "/PROJECTS/AERIES.png",
+      "https://picsum.photos/seed/aeries-2/800/600"
+    ],
+    "links": {
+      "live": "https://wfm5-level-3.webflow.io/"
+    },
+    "tags": ["Webflow", "UI/UX"],
+    "metrics": [
+      { "label": "Design Score", "value": "A+" },
+      { "label": "Performance", "value": "95/100" },
+      { "label": "Accessibility", "value": "98/100" }
+    ],
+    "featured": true
+  },
+  {
+    "id": "flowga-yoga-studio",
+    "slug": "flowga-yoga-studio",
+    "title": "Flowga — Yoga Studio",
+    "role": "Webflow Developer",
+    "summary": "Boutique studio site with schedules and class info.",
+    "description": "A calming, wellness-focused website for a boutique yoga studio featuring class schedules, instructor profiles, and online booking capabilities.",
+    "cover": "/PROJECTS/FLOWGA.png",
+    "gallery": [
+      "/PROJECTS/FLOWGA.png",
+      "https://picsum.photos/seed/flowga-2/800/600",
+      "https://picsum.photos/seed/flowga-3/800/600"
+    ],
+    "links": {
+      "live": "https://flowgav2.webflow.io/"
+    },
+    "tags": ["Webflow", "Local Business"],
+    "metrics": [
+      { "label": "User Engagement", "value": "4.2x" },
+      { "label": "Booking Rate", "value": "18%" },
+      { "label": "Bounce Rate", "value": "32%" }
+    ],
+    "featured": false
+  },
+  {
+    "id": "sportlink-events",
+    "slug": "sportlink-events",
+    "title": "Sportlink Events",
+    "role": "Web Designer/Developer",
+    "summary": "Event microsite concept focusing on clarity and speed.",
+    "description": "A high-performance event microsite designed for quick loading and clear information hierarchy, perfect for time-sensitive event promotions.",
+    "cover": "/PROJECTS/SPORTLINK.png",
+    "gallery": [
+      "/PROJECTS/SPORTLINK.png",
+      "https://picsum.photos/seed/sportlink-2/800/600"
+    ],
+    "links": {
+      "live": "https://wfm5-level-1-course-build-725271.design.webflow.com/"
+    },
+    "tags": ["Webflow", "Events"],
+    "metrics": [
+      { "label": "Load Time", "value": "1.8s" },
+      { "label": "Core Web Vitals", "value": "Green" },
+      { "label": "Mobile UX", "value": "Excellent" }
+    ],
+    "featured": false
+  },
+  {
+    "id": "lila-hart",
+    "slug": "lila-hart",
+    "title": "Lila Hart",
+    "role": "Webflow Developer",
+    "summary": "Personal brand site with bold visuals and polished motion.",
+    "description": "A striking personal brand website featuring bold typography, sophisticated animations, and a unique visual identity that stands out in the creative industry.",
+    "cover": "/PROJECTS/LILAHART.png",
+    "gallery": [
+      "/PROJECTS/LILAHART.png",
+      "https://picsum.photos/seed/lilahart-2/800/600",
+      "https://picsum.photos/seed/lilahart-3/800/600"
+    ],
+    "links": {
+      "live": "https://wfm5-level-1-course-build-725271.webflow.io/"
+    },
+    "tags": ["Webflow", "Branding"],
+    "metrics": [
+      { "label": "Visual Impact", "value": "A+" },
+      { "label": "Brand Recognition", "value": "85%" },
+      { "label": "User Retention", "value": "3.4min" }
+    ],
+    "featured": true
+  }
+]

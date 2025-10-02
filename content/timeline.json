@@ -1,0 +1,113 @@
+[
+  {
+    "id": "education-fanshawe",
+    "type": "education",
+    "title": "Diploma in Web Development & Internet Applications",
+    "organization": "Fanshawe College",
+    "location": "London, Ontario, Canada",
+    "startDate": "2022-10-01",
+    "endDate": "2024-05-01",
+    "description": [
+      "Comprehensive program covering modern web development technologies",
+      "Hands-on experience with React, Node.js, and database management",
+      "Project-based learning with real-world applications"
+    ],
+    "tags": ["Web Development", "React", "Node.js", "Database"]
+  },
+  {
+    "id": "education-university",
+    "type": "education",
+    "title": "Bachelor's Degree in Computer Science",
+    "organization": "University of El Salvador",
+    "location": "San Salvador, El Salvador",
+    "startDate": "2017-03-01",
+    "endDate": "2023-01-01",
+    "description": [
+      "Strong foundation in computer science principles and algorithms",
+      "Software engineering methodologies and best practices",
+      "Data structures, algorithms, and system design"
+    ],
+    "tags": ["Computer Science", "Algorithms", "Software Engineering"]
+  },
+  {
+    "id": "experience-webloft-founder",
+    "type": "experience",
+    "title": "Founder & CEO",
+    "organization": "WebLoft Studio",
+    "location": "London, Ontario, Canada",
+    "startDate": "2022-10-01",
+    "endDate": null,
+    "externalLink": "https://webloftstudio.com",
+    "description": [
+      "Founded and lead WebLoft Studio, a digital solutions company specializing in modern web development",
+      "Architect comprehensive digital solutions that drive business growth and operational efficiency",
+      "Manage client relationships and oversee project delivery from concept to deployment",
+      "Lead technical strategy and business development initiatives"
+    ],
+    "tags": ["Entrepreneurship", "Leadership", "Web Development", "Business Strategy"]
+  },
+  {
+    "id": "experience-cybervadis-am",
+    "type": "experience",
+    "title": "Account Manager",
+    "organization": "CyberVadis",
+    "location": "Remote",
+    "startDate": "2025-08-01",
+    "endDate": null,
+    "description": [
+      "Manage vendor/client portfolios to drive timely completion of CyberVadis security assessments",
+      "Primary escalation point of contact for complex client issues",
+      "KPI monitoring and outreach optimization for improved client satisfaction",
+      "Cross-functional collaboration with sales, support, and technical teams"
+    ],
+    "tags": ["Account Management", "Client Relations", "KPI Monitoring", "Security"]
+  },
+  {
+    "id": "experience-cybervadis-soe",
+    "type": "experience",
+    "title": "Senior Onboarding Executive",
+    "organization": "CyberVadis",
+    "location": "Remote",
+    "startDate": "2024-09-01",
+    "endDate": "2025-08-01",
+    "description": [
+      "Led onboarding and premium support for enterprise clients",
+      "Coordinated with Customer Success, Finance, and Legal teams",
+      "CRM-driven tracking and best-practice enablement",
+      "Developed streamlined onboarding processes reducing time-to-value"
+    ],
+    "tags": ["Onboarding", "Customer Success", "CRM", "Process Improvement"]
+  },
+  {
+    "id": "experience-iadvize",
+    "type": "experience",
+    "title": "Customer & Technical Support Specialist (Samsung)",
+    "organization": "iAdvize Inc",
+    "location": "Remote",
+    "startDate": "2021-08-01",
+    "endDate": "2024-05-01",
+    "description": [
+      "Provided technical support for Samsung products and services",
+      "Resolved complex customer issues through multiple communication channels",
+      "Maintained high customer satisfaction ratings",
+      "Collaborated with engineering teams to escalate and resolve technical issues"
+    ],
+    "tags": ["Technical Support", "Customer Service", "Samsung", "Problem Solving"]
+  },
+  {
+    "id": "experience-delta",
+    "type": "experience",
+    "title": "Passenger Service Agent",
+    "organization": "Delta Airlines",
+    "location": "San Salvador, El Salvador",
+    "startDate": "2020-11-01",
+    "endDate": "2021-08-01",
+    "description": [
+      "Assisted passengers with check-in, boarding, and baggage services",
+      "Resolved travel-related issues and provided customer support",
+      "Maintained compliance with airline safety and security protocols",
+      "Handled international flight operations and documentation"
+    ],
+    "tags": ["Customer Service", "Aviation", "International Operations"]
+  }
+]

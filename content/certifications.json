@@ -1,0 +1,119 @@
+[
+  {
+    "id": "ai-leadership-coursera",
+    "name": "Generative AI for Leaders",
+    "issuer": "Coursera",
+    "issuedOn": "2025-09-01",
+    "certificateUrl": "https://www.coursera.org/account/accomplishments/verify/MW7BC9WO7FEU",
+    "logo": "/logos/coursera.svg",
+    "tags": ["AI", "Leadership"]
+  },
+  {
+    "id": "webflow-practitioner",
+    "name": "Webflow Practitioner Certification",
+    "issuer": "Webflow",
+    "issuedOn": "2025-02-01",
+    "certificateUrl": "https://www.credential.net/d91f5f31-9445-41da-a949-60e315e15071#acc.GsDTwCR7",
+    "logo": "/logos/webflow.svg",
+    "tags": ["Webflow", "NoCode"]
+  },
+  {
+    "id": "google-pm-spec",
+    "name": "Google Project Management Specialization",
+    "issuer": "Google (Coursera)",
+    "issuedOn": "2025-03-01",
+    "certificateUrl": "https://www.coursera.org/account/accomplishments/specialization/F1T5SP2Z9QL2",
+    "logo": "/logos/google.svg",
+    "tags": ["Project Management"]
+  },
+  {
+    "id": "foundations-dme-google",
+    "name": "Foundations of Digital Marketing and E-commerce",
+    "issuer": "Google (Coursera)",
+    "issuedOn": "2024-10-01",
+    "certificateUrl": "https://www.coursera.org/account/accomplishments/verify/E0268VVY3WAF",
+    "logo": "/logos/google.svg",
+    "tags": ["Marketing", "E-commerce"]
+  },
+  {
+    "id": "comp-thinking-umich",
+    "name": "Problem Solving Using Computational Thinking",
+    "issuer": "University of Michigan (Coursera)",
+    "issuedOn": "2021-10-01",
+    "certificateUrl": "https://www.coursera.org/account/accomplishments/verify/YEPZXN4UNSFP",
+    "logo": "/logos/umich.svg",
+    "tags": ["Problem Solving"]
+  },
+  {
+    "id": "strategic-mgmt-cbs",
+    "name": "Strategic Management",
+    "issuer": "Copenhagen Business School (Coursera)",
+    "issuedOn": "2021-07-01",
+    "certificateUrl": "https://www.coursera.org/account/accomplishments/verify/7EFQPDZWDPXV",
+    "logo": "/logos/cbs.svg",
+    "tags": ["Strategy"]
+  },
+  {
+    "id": "intl-business-unm",
+    "name": "International Business I",
+    "issuer": "The University of New Mexico (Coursera)",
+    "issuedOn": "2021-05-01",
+    "certificateUrl": "https://www.coursera.org/account/accomplishments/verify/4KPRMUREL5S8",
+    "logo": "/logos/unm.svg",
+    "tags": ["Business"]
+  },
+  {
+    "id": "leadership-ei-isb",
+    "name": "Leadership and Emotional Intelligence",
+    "issuer": "Indian School of Business (Coursera)",
+    "issuedOn": "2021-05-01",
+    "certificateUrl": "https://www.coursera.org/account/accomplishments/verify/T8479MCMDLML",
+    "logo": "/logos/isb.svg",
+    "tags": ["Leadership"]
+  },
+  {
+    "id": "excel-essentials-macquarie",
+    "name": "Excel Skills for Business: Essentials",
+    "issuer": "Macquarie University (Coursera)",
+    "issuedOn": "2020-05-01",
+    "certificateUrl": "https://www.coursera.org/account/accomplishments/verify/L8D9A68ZH8ZT",
+    "logo": "/logos/macquarie.svg",
+    "tags": ["Excel"]
+  },
+  {
+    "id": "tech-support-google",
+    "name": "Technical Support Fundamentals",
+    "issuer": "Google (Coursera)",
+    "issuedOn": "2020-02-01",
+    "certificateUrl": "https://www.coursera.org/account/accomplishments/verify/6R94Y4CGWVCE",
+    "logo": "/logos/google.svg",
+    "tags": ["IT Support"]
+  },
+  {
+    "id": "aws-cloud-essentials",
+    "name": "AWS Cloud Technical Essentials",
+    "issuer": "Amazon Web Services",
+    "issuedOn": "2025-09-01",
+    "certificateUrl": "https://example.com/cert/aws-cloud",
+    "logo": "/logos/aws.svg",
+    "tags": ["AWS", "Cloud Computing"]
+  },
+  {
+    "id": "successful-negotiation",
+    "name": "Successful Negotiation: Essential Strategies and Skills",
+    "issuer": "University of Michigan (Coursera)",
+    "issuedOn": "2025-08-01",
+    "certificateUrl": "https://example.com/cert/negotiation",
+    "logo": "/logos/umich.svg",
+    "tags": ["Negotiation", "Skills"]
+  },
+  {
+    "id": "cloud-computing-google",
+    "name": "Cloud Computing – Google Activate",
+    "issuer": "Google Activate",
+    "issuedOn": "2020-04-01",
+    "certificateUrl": "https://example.com/cert/cloud-computing",
+    "logo": "/logos/google.svg",
+    "tags": ["Cloud Computing", "Google"]
+  }
+]
