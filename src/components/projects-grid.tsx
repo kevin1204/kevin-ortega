@@ -14,7 +14,7 @@ import {
 } from '@/lib/animations';
 import { LoadingGrid } from '@/components/loading';
 import { MagneticCard } from '@/components/magnetic-card';
-import { RippleButton } from '@/components/ripple-button';
+import { Button } from '@/components/ui/button';
 
 interface ProjectsGridProps {
   projects: Project[];
@@ -81,20 +81,20 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
                       <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="flex gap-2">
                           {project.links.live && (
-                            <RippleButton size="sm" asChild>
+                            <Button size="sm" asChild>
                               <a href={project.links.live} target="_blank" rel="noopener noreferrer">
                                 <ExternalLink className="mr-2 h-3 w-3" />
                                 Live
                               </a>
-                            </RippleButton>
+                            </Button>
                           )}
                           {project.links.github && (
-                            <RippleButton size="sm" variant="outline" asChild>
+                            <Button size="sm" variant="outline" asChild>
                               <a href={project.links.github} target="_blank" rel="noopener noreferrer">
                                 <ExternalLink className="mr-2 h-3 w-3" />
                                 Code
                               </a>
-                            </RippleButton>
+                            </Button>
                           )}
                         </div>
                       </div>
@@ -131,12 +131,12 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
                         ))}
                       </div>
                       
-                      <RippleButton asChild variant="ghost" className="w-full group/link">
+                      <Button asChild variant="ghost" className="w-full group/link">
                         <Link href={`/projects/${project.slug}`}>
                           View Details
                           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/link:translate-x-1" />
                         </Link>
-                      </RippleButton>
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>

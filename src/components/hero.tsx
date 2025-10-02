@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import { ArrowRight, Download, Eye } from 'lucide-react';
 import type { SiteConfig } from '@/lib/types';
 import { 
@@ -11,7 +12,6 @@ import {
   gradientShiftVariants
 } from '@/lib/animations';
 import { ConstellationBackground } from '@/components/constellation-background';
-import { RippleButton } from '@/components/ripple-button';
 import { MagneticCard } from '@/components/magnetic-card';
 import { TextReveal } from '@/components/text-reveal';
 
@@ -99,34 +99,34 @@ export function Hero({ siteConfig }: HeroProps) {
           >
             <motion.div variants={fadeInUp}>
               <MagneticCard intensity={0.2}>
-                <RippleButton asChild size="lg" className="group">
+                <Button asChild size="lg" className="group">
                   <Link href="/projects">
                     View Projects
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
-                </RippleButton>
+                </Button>
               </MagneticCard>
             </motion.div>
             
             <motion.div variants={fadeInUp}>
               <MagneticCard intensity={0.2}>
-                <RippleButton asChild variant="outline" size="lg" className="group">
+                <Button asChild variant="outline" size="lg" className="group">
                   <Link href="/contact">
                     <Eye className="mr-2 h-4 w-4" />
                     Get In Touch
                   </Link>
-                </RippleButton>
+                </Button>
               </MagneticCard>
             </motion.div>
             
             <motion.div variants={fadeInUp}>
               <MagneticCard intensity={0.2}>
-                <RippleButton asChild variant="ghost" size="lg" className="group">
+                <Button asChild variant="ghost" size="lg" className="group">
                   <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
                     <Download className="mr-2 h-4 w-4" />
                     Download Resume
                   </Link>
-                </RippleButton>
+                </Button>
               </MagneticCard>
             </motion.div>
           </motion.div>

@@ -17,7 +17,6 @@ import {
   depthVariants
 } from '@/lib/animations';
 import { MagneticCard } from '@/components/magnetic-card';
-import { RippleButton } from '@/components/ripple-button';
 
 interface AnimatedTimelineProps {
   entries: TimelineEntry[];
@@ -216,16 +215,15 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
                         </div>
                         
                         {entry.externalLink && (
-                          <RippleButton
+                          <Button
                             variant="ghost"
                             size="sm"
                             asChild
-                            onClick={() => {}}
                           >
                             <a href={entry.externalLink} target="_blank" rel="noopener noreferrer">
                               <ExternalLink className="h-4 w-4" />
                             </a>
-                          </RippleButton>
+                          </Button>
                         )}
                       </div>
 
