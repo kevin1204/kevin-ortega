@@ -47,28 +47,30 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
   }, [entries, activeFilter]);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
       year: 'numeric',
-      month: 'short',
+      month: 'long'
     });
   };
 
-  const formatDateRange = (startDate: string, endDate: string | null) => {
+  const formatDateRange = (startDate: string, endDate: string) => {
     const start = formatDate(startDate);
     const end = endDate ? formatDate(endDate) : 'Present';
     return `${start} - ${end}`;
   };
 
   return (
-    <div className="space-y-8">
-      {/* Filter Buttons */}
-      <div className="flex justify-center gap-4 mb-12">
+    <div className="max-w-4xl mx-auto px-6 py-12">
+      {/* Filter buttons */}
+      <div className="flex gap-4 mb-12 justify-center">
         <Button
           variant={activeFilter === 'all' ? 'default' : 'outline'}
           onClick={() => setActiveFilter('all')}
           className="flex items-center gap-2"
         >
-          <span>All</span>
+          <Building className="h-4 w-4" />
+          All
         </Button>
         <Button
           variant={activeFilter === 'education' ? 'default' : 'outline'}
@@ -76,7 +78,7 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
           className="flex items-center gap-2"
         >
           <GraduationCap className="h-4 w-4" />
-          <span>Education</span>
+          Education
         </Button>
         <Button
           variant={activeFilter === 'experience' ? 'default' : 'outline'}
@@ -84,7 +86,7 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
           className="flex items-center gap-2"
         >
           <Briefcase className="h-4 w-4" />
-          <span>Work Experience</span>
+          Work Experience
         </Button>
       </div>
 
@@ -94,8 +96,7 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
           variants={timelineLineVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-primary opacity-60"
-          style={{ transformOrigin: 'top' }}
+          className="absolute left-8 top-0 bottom-0 w-px bg-border/50"
         />
 
         <motion.div
@@ -105,57 +106,56 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
           className="space-y-8"
         >
           {filteredEntries.map((entry, index) => (
-          <motion.div
-            key={entry.id}
-            variants={scrollRevealItem}
-            className="relative flex items-start"
-          >
-            {/* Enhanced Timeline dot with glow effect */}
             <motion.div
-              variants={timelineDotVariants}
-              className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"
-              whileHover={{ 
-                scale: 1.2,
-                boxShadow: "0 0 20px hsl(var(--primary))",
-                transition: { duration: 0.2 }
-              }}
-            >
-              {/* Glow effect */}
-              <motion.div
-                className="absolute inset-0 bg-primary rounded-full opacity-30"
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-            </motion.div>
-
-            {/* Animated connection line to next item */}
-            {index < filteredEntries.length - 1 && (
-              <motion.div
-                variants={timelineConnectionVariants}
-                className="absolute left-8 top-4 w-px h-8 bg-gradient-to-b from-primary/60 to-transparent"
-                style={{ transformOrigin: 'top' }}
-              />
-            )}
-
-            {/* Content */}
-            <motion.div
+              key={entry.id}
               variants={scrollRevealItem}
-              className="ml-16 flex-1 relative z-10"
+              className="relative flex items-start"
             >
-              <div className="relative overflow-visible">
-                <Card 
-                  className={`group cursor-pointer transition-all duration-300 bg-card rounded-2xl shadow-lg border ${
-                    expandedItem === entry.id ? 'shadow-xl border-primary/50' : ''
-                  }`}
-                  onClick={() => setExpandedItem(expandedItem === entry.id ? null : entry.id)}
-                >
+              {/* Enhanced Timeline dot with glow effect */}
+              <motion.div
+                variants={timelineDotVariants}
+                className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"
+                whileHover={{ 
+                  scale: 1.2,
+                  boxShadow: "0 0 20px hsl(var(--primary))",
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                {/* Glow effect */}
+                <motion.div
+                  className="absolute inset-0 bg-primary rounded-full opacity-30"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.3, 0.6, 0.3],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.div>
+
+              {/* Animated connection line to next item */}
+              {index < filteredEntries.length - 1 && (
+                <motion.div
+                  variants={timelineConnectionVariants}
+                  className="absolute left-8 top-4 w-px h-8 bg-gradient-to-b from-primary/60 to-transparent"
+                />
+              )}
+
+              {/* Content */}
+              <motion.div
+                variants={scrollRevealItem}
+                className="ml-16 flex-1 relative z-10"
+              >
+                <div className="relative overflow-visible">
+                  <Card 
+                    className={`group cursor-pointer transition-all duration-300 bg-card rounded-2xl shadow-lg border ${
+                      expandedItem === entry.id ? 'shadow-xl border-primary/50' : ''
+                    }`}
+                    onClick={() => setExpandedItem(expandedItem === entry.id ? null : entry.id)}
+                  >
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
@@ -164,10 +164,7 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
                               whileHover={{ scale: 1.05 }}
                               transition={{ duration: 0.2 }}
                             >
-                              <Badge 
-                                variant={entry.type === 'education' ? 'default' : 'secondary'}
-                                className="text-xs"
-                              >
+                              <Badge variant="secondary" className="text-xs">
                                 {entry.type === 'education' ? 'Education' : 'Experience'}
                               </Badge>
                             </motion.div>
@@ -185,41 +182,29 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
                             ))}
                           </div>
                           
-                          <motion.h3 
-                            className="text-xl font-semibold mb-1"
-                            whileHover={{ color: "hsl(var(--primary))" }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            {entry.title}
-                          </motion.h3>
-                          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
-                            <div className="flex items-center gap-1">
-                              <Building className="h-4 w-4" />
-                              <span>{entry.organization}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <MapPin className="h-4 w-4" />
-                              <span>{entry.location}</span>
-                            </div>
-                          </div>
-                          
+                          <h3 className="text-xl font-semibold mb-1">{entry.title}</h3>
+                          <p className="text-sm text-muted-foreground mb-2">{entry.organization}</p>
+                          <p className="text-sm text-muted-foreground">{entry.location}</p>
+                        </div>
+                        
+                        <div className="flex flex-col items-end gap-2">
                           <div className="flex items-center gap-1 text-sm text-muted-foreground">
                             <Calendar className="h-4 w-4" />
                             <span>{formatDateRange(entry.startDate, entry.endDate)}</span>
                           </div>
+                          
+                          {entry.externalLink && (
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              asChild
+                            >
+                              <a href={entry.externalLink} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="h-4 w-4" />
+                              </a>
+                            </Button>
+                          )}
                         </div>
-                        
-                        {entry.externalLink && (
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            asChild
-                          >
-                            <a href={entry.externalLink} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="h-4 w-4" />
-                            </a>
-                          </Button>
-                        )}
                       </div>
 
                       {/* Enhanced expanded content */}
@@ -229,33 +214,40 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
                         animate={expandedItem === entry.id ? "expanded" : "collapsed"}
                         className="overflow-hidden"
                       >
-                        <div className="pt-4 border-t border-border">
-                          <ul className="space-y-2">
-                            {entry.description.map((item, idx) => (
-                              <motion.li 
-                                key={idx} 
-                                className="flex items-start gap-2 text-sm text-muted-foreground"
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: idx * 0.1 }}
-                              >
-                                <motion.span 
-                                  className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"
-                                  animate={{
-                                    scale: [1, 1.2, 1],
-                                    opacity: [0.6, 1, 0.6],
-                                  }}
-                                  transition={{
-                                    duration: 2,
-                                    repeat: Infinity,
-                                    delay: idx * 0.2,
-                                    ease: "easeInOut"
-                                  }}
-                                />
-                                <span>{item}</span>
-                              </motion.li>
-                            ))}
-                          </ul>
+                        <div className="space-y-4">
+                          <p className="text-muted-foreground">{entry.description}</p>
+                          
+                          {entry.achievements && entry.achievements.length > 0 && (
+                            <div>
+                              <h4 className="font-semibold mb-2">Key Achievements:</h4>
+                              <ul className="space-y-2">
+                                {entry.achievements.map((item, idx) => (
+                                  <motion.li
+                                    key={idx}
+                                    className="flex items-start gap-2 text-sm"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: idx * 0.1 }}
+                                  >
+                                    <motion.div
+                                      className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"
+                                      animate={{
+                                        scale: [1, 1.2, 1],
+                                        opacity: [0.6, 1, 0.6],
+                                      }}
+                                      transition={{
+                                        duration: 1.5,
+                                        repeat: Infinity,
+                                        delay: idx * 0.2,
+                                        ease: "easeInOut"
+                                      }}
+                                    />
+                                    <span>{item}</span>
+                                  </motion.li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                           
                           {entry.tags && entry.tags.length > 2 && (
                             <div className="mt-4 pt-4 border-t border-border">
@@ -280,11 +272,11 @@ export function AnimatedTimeline({ entries }: AnimatedTimelineProps) {
                     </CardContent>
                   </Card>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
-      </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 }
