@@ -2,10 +2,18 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { ArrowRight, Download, Eye } from 'lucide-react';
 import type { SiteConfig } from '@/lib/types';
-import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations';
+import { 
+  fadeInUp, 
+  staggerContainer, 
+  staggerItem, 
+  gradientShiftVariants
+} from '@/lib/animations';
+import { ConstellationBackground } from '@/components/constellation-background';
+import { RippleButton } from '@/components/ripple-button';
+import { MagneticCard } from '@/components/magnetic-card';
+import { TextReveal } from '@/components/text-reveal';
 
 interface HeroProps {
   siteConfig: SiteConfig;
@@ -14,32 +22,20 @@ interface HeroProps {
 export function Hero({ siteConfig }: HeroProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]" />
+      {/* Enhanced Constellation Background */}
+      <ConstellationBackground />
       
-      {/* Floating particles */}
-      <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/20 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.2, 0.8, 0.2],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
+      {/* Dynamic gradient overlay */}
+      <motion.div
+        className="absolute inset-0"
+        variants={gradientShiftVariants}
+        animate="animate"
+        style={{
+          background: 'linear-gradient(45deg, hsl(var(--primary)) 0%, transparent 50%, hsl(var(--accent)) 100%)',
+          opacity: 0.1,
+          backgroundSize: '200% 200%',
+        }}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
         <motion.div
@@ -53,7 +49,12 @@ export function Hero({ siteConfig }: HeroProps) {
               className="text-4xl font-bold tracking-tight font-display sm:text-6xl lg:text-7xl"
               variants={fadeInUp}
             >
-              <span className="gradient-text">{siteConfig.name}</span>
+              <TextReveal 
+                text={siteConfig.name}
+                type="character"
+                as="span"
+                className="gradient-text"
+              />
             </motion.h1>
           </motion.div>
           
@@ -62,9 +63,14 @@ export function Hero({ siteConfig }: HeroProps) {
               className="text-xl font-semibold text-muted-foreground sm:text-2xl lg:text-3xl"
               variants={fadeInUp}
             >
-              Full Stack Developer & Solutions Architect • Founder & CEO @{' '}
+              <TextReveal 
+                text="Full Stack Developer & Solutions Architect • Founder & CEO @"
+                type="word"
+                as="span"
+              />
+              {' '}
               <Link 
-                href={siteConfig.links.website}
+                href={siteConfig.links.website || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary/80 transition-colors font-semibold"
@@ -79,7 +85,11 @@ export function Hero({ siteConfig }: HeroProps) {
               className="text-lg text-muted-foreground max-w-3xl mx-auto text-balance"
               variants={fadeInUp}
             >
-              {siteConfig.description}
+              <TextReveal 
+                text={siteConfig.description}
+                type="word"
+                as="span"
+              />
             </motion.p>
           </motion.div>
           
@@ -88,30 +98,36 @@ export function Hero({ siteConfig }: HeroProps) {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <motion.div variants={fadeInUp}>
-              <Button asChild size="lg" className="group">
-                <Link href="/projects">
-                  View Projects
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
+              <MagneticCard intensity={0.2}>
+                <RippleButton asChild size="lg" className="group">
+                  <Link href="/projects">
+                    View Projects
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </RippleButton>
+              </MagneticCard>
             </motion.div>
             
             <motion.div variants={fadeInUp}>
-              <Button asChild variant="outline" size="lg" className="group">
-                <Link href="/contact">
-                  <Eye className="mr-2 h-4 w-4" />
-                  Get In Touch
-                </Link>
-              </Button>
+              <MagneticCard intensity={0.2}>
+                <RippleButton asChild variant="outline" size="lg" className="group">
+                  <Link href="/contact">
+                    <Eye className="mr-2 h-4 w-4" />
+                    Get In Touch
+                  </Link>
+                </RippleButton>
+              </MagneticCard>
             </motion.div>
             
             <motion.div variants={fadeInUp}>
-              <Button asChild variant="ghost" size="lg" className="group">
-                <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                  <Download className="mr-2 h-4 w-4" />
-                  Download Resume
-                </Link>
-              </Button>
+              <MagneticCard intensity={0.2}>
+                <RippleButton asChild variant="ghost" size="lg" className="group">
+                  <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                    <Download className="mr-2 h-4 w-4" />
+                    Download Resume
+                  </Link>
+                </RippleButton>
+              </MagneticCard>
             </motion.div>
           </motion.div>
           

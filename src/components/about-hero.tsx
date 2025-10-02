@@ -50,7 +50,7 @@ export function AboutHero({ siteConfig }: AboutHeroProps) {
                 I&apos;m a Full Stack Developer and Solutions Architect based in {siteConfig.links.location}. 
                 As the Founder & CEO of{' '}
                 <Link 
-                  href={siteConfig.links.website}
+                  href={siteConfig.links.website || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:text-primary/80 transition-colors font-semibold"

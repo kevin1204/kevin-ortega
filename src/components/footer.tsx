@@ -8,12 +8,12 @@ export async function Footer() {
   const socialLinks = [
     {
       name: 'LinkedIn',
-      href: siteConfig.links.linkedin,
+      href: siteConfig.links.linkedin || '#',
       icon: Linkedin,
     },
     {
       name: 'GitHub',
-      href: siteConfig.links.github,
+      href: siteConfig.links.github || '#',
       icon: Github,
     },
   ];
@@ -23,7 +23,7 @@ export async function Footer() {
     { name: 'Timeline', href: '/timeline' },
     { name: 'Projects', href: '/projects' },
     { name: 'Contact', href: '/contact' },
-    { name: 'WebLoft Studio', href: siteConfig.links.website, external: true },
+    { name: 'WebLoft Studio', href: siteConfig.links.website || '#', external: true },
   ];
 
   return (

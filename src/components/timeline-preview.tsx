@@ -106,9 +106,11 @@ export function TimelinePreview({ entries }: TimelinePreviewProps) {
                           <Badge variant={entry.type === 'education' ? 'default' : 'secondary'}>
                             {entry.type === 'education' ? 'Education' : 'Experience'}
                           </Badge>
-                          <Badge variant="outline" className="text-xs">
-                            {entry.tags[0]}
-                          </Badge>
+                          {entry.tags && entry.tags[0] && (
+                            <Badge variant="outline" className="text-xs">
+                              {entry.tags[0]}
+                            </Badge>
+                          )}
                         </div>
                         
                         <h3 className="text-xl font-semibold mb-2">{entry.title}</h3>
